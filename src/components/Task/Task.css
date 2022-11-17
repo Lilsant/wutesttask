@@ -1,0 +1,91 @@
+.task__main {
+  display: flex;
+  width: 300px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 12px;
+  background: #f5f6f7;
+  border-radius: 4px;
+}
+
+.task__main-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.task__title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 128%;
+  letter-spacing: -0.02em;
+  color: #1b1c1f;
+}
+
+.task__time {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 128%;
+  letter-spacing: -0.02em;
+  color: #656a72;
+  opacity: 0.8;
+}
+
+.task__button {
+  background: none;
+  border: none;
+}
+
+.task__button-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.task__more {
+  width: 300px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  padding-bottom: 16px;
+  background: #f5f6f7;
+  border-radius: 4px;
+}
+
+.task__description {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.task__btn {
+  width: 32px;
+  border: none;
+  height: 32px;
+  margin-right: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.task__btn--edit {
+  background: #1b1c1f;
+}
+
+.task__btn--delete {
+  background: #ff0d0d;
+}
+
+.task__btn--done {
+  background-color: #0f8cff;
+}
+
+.task__buttons-container {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.task__button-icon--reverse {
+  transform: rotate(180deg);
+}
