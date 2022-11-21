@@ -1,27 +1,34 @@
 import React, { useState } from "react";
 import "./TaskForm.css";
 
-export default function TaskForm() {
+export default function TaskForm({ onFormSubmit }) {
   const [formInfo, setFormInfo] = useState({
     title: "",
     description: "",
     time: "",
   });
 
-  console.log(formInfo.title, " ", formInfo.description);
+  console.log(formInfo.title, " ", formInfo.description, formInfo.time);
   return (
     <div className="form__container">
       <form
         className="form"
         onSubmit={(e) => {
           e.preventDefault();
+          setFormInfo((state) => ({ ...state, id: Date.now() }));
+          onFormSubmit(formInfo);
+          setFormInfo({
+            title: "",
+            description: "",
+            time: "",
+          });
         }}
       >
         <input
           className="form__input"
           placeholder="Title"
           onChange={(e) => {
-            setFormInfo((state) => (state.title = e.target.value));
+            setFormInfo((state) => ({ ...state, title: e.target.value }));
           }}
           value={formInfo.title}
         />
@@ -29,11 +36,18 @@ export default function TaskForm() {
           className="form__input"
           placeholder="Description"
           onChange={(e) => {
-            setFormInfo((state) => (state.description = e.target.value));
+            setFormInfo((state) => ({ ...state, description: e.target.value }));
           }}
           value={formInfo.description}
         />
-        <input type="time" className="form__input" placeholder="Time" />
+        <input
+          type="time"
+          className="form__input"
+          placeholder="Time"
+          onChange={(e) => {
+            setFormInfo((state) => ({ ...state, time: e.target.value }));
+          }}
+        />
         <button type="submit" className="form__btn">
           Add
         </button>

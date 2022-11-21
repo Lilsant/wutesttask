@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Calendar from "./components/Calendar/Calendar";
-import Task from "./components/Task/Task";
-import TaskForm from "./components/TaskForm/TaskForm";
+import TaskSection from "./components/TaskSection/TaskSection";
 
 function App() {
+
+
   return (
     <div className="App">
       <Calendar />
-      <Task />
-      <TaskForm />
     </div>
   );
 }
