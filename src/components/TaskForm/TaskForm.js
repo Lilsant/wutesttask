@@ -6,6 +6,7 @@ export default function TaskForm({ onFormSubmit }) {
     title: "",
     description: "",
     time: "",
+    files: [],
   });
 
   return (
@@ -47,6 +48,14 @@ export default function TaskForm({ onFormSubmit }) {
             setFormInfo((state) => ({ ...state, description: e.target.value }));
           }}
           value={formInfo.description}
+        />
+        <input
+          type="file"
+          multiple
+          className="form__input-files"
+          onChange={(e) => {
+            setFormInfo((state) => ({ ...state, filees: e.target.files }));
+          }}
         />
         <button type="submit" className="form__btn">
           Add

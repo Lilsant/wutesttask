@@ -9,6 +9,7 @@ import TaskEditForm from "../TaskEditForm/TaskEditForm";
 export default function Task({ task, deleteTask, completeTask, onTaskEdit }) {
   const [isVisible, setIsVisible] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  console.log(task);
 
   function onEditBtnClick() {
     setIsEdit(true);
