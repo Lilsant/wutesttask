@@ -9,14 +9,12 @@ import TaskEditForm from "../TaskEditForm/TaskEditForm";
 export default function Task({ task, deleteTask, completeTask, onTaskEdit }) {
   const [isVisible, setIsVisible] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const [taskInformation, setTaskInformation] = useState(task);
 
   function onEditBtnClick() {
     setIsEdit(true);
   }
 
   function onSubmitEditForm(taskInfo) {
-    setTaskInformation(taskInfo);
     setIsEdit(false);
     onTaskEdit(taskInfo);
   }
@@ -25,7 +23,7 @@ export default function Task({ task, deleteTask, completeTask, onTaskEdit }) {
     return <TaskEditForm onSubmitEditForm={onSubmitEditForm} task={task} />;
 
   return (
-    <div key={task.id} className="task">
+    <div className="task">
       <div className="task__main">
         <div className="task__main-info">
           <h3 className="task__title">{task.title}</h3>

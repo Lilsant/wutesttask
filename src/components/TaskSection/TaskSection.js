@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Task from "../Task/Task";
 import TaskForm from "../TaskForm/TaskForm";
 
 export default function TaskSection({ tasks, onTaskArrChange }) {
-  const [taskArr, setTaskArr] = useState(tasks);
   const [completedTaskArr, setCompletedTaskArr] = useState([]);
-
+  console.log(tasks);
   function onFormSubmit(taskInfo) {
     taskInfo.id = Math.random()
       .toString(36)
@@ -17,7 +16,7 @@ export default function TaskSection({ tasks, onTaskArrChange }) {
 
   function onTaskEdit(taskInformation) {
     let currentId;
-    tasks.map((el, i) => {
+    tasks.forEach((el, i) => {
       if (el.id === taskInformation.id) currentId = i;
     });
     const newArr = tasks;
@@ -38,7 +37,7 @@ export default function TaskSection({ tasks, onTaskArrChange }) {
   }
 
   function completeTask(number) {
-    const completedTask = taskArr.map((el) => {
+    const completedTask = tasks.forEach((el) => {
       if (el.id === number) return el;
     });
     deleteTask(number);
@@ -46,16 +45,21 @@ export default function TaskSection({ tasks, onTaskArrChange }) {
   }
   return (
     <div>
-      {tasks.map((task) => {
-        return (
-          <Task
-            task={task}
-            deleteTask={deleteTask}
-            completeTask={completeTask}
-            onTaskEdit={onTaskEdit}
-          />
-        );
-      })}
+      {tasks.length ? (
+        tasks.map((task) => {
+          return (
+            <Task
+              key={task.id}
+              task={task}
+              deleteTask={deleteTask}
+              completeTask={completeTask}
+              onTaskEdit={onTaskEdit}
+            />
+          );
+        })
+      ) : (
+        <span>На этот день не назначено никаких задач.</span>
+      )}
       <TaskForm onFormSubmit={onFormSubmit} />
     </div>
   );

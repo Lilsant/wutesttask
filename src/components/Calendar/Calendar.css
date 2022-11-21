@@ -3,7 +3,6 @@
   font-size: 16px;
   line-height: 150%;
   text-align: center;
-  color: #1b1c1f;
   margin-bottom: 8px;
 }
 
@@ -12,10 +11,10 @@
   font-size: 14px;
   line-height: 150%;
   text-align: center;
-  color: #1b1c1f;
 }
 
 .calendar__item {
+  color: #1b1c1f;
   padding: 8px;
   width: 40px;
   display: flex;
@@ -23,6 +22,12 @@
   align-items: center;
   margin-right: 16px;
   cursor: pointer;
+}
+
+.calendar__item--active {
+  color: white !important;
+  background-color: #0f8cff;
+  border-radius: 8px;
 }
 
 .calendar__item:hover {

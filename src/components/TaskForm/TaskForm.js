@@ -38,6 +38,7 @@ export default function TaskForm({ onFormSubmit }) {
           onChange={(e) => {
             setFormInfo((state) => ({ ...state, time: e.target.value }));
           }}
+          value={formInfo.time}
         />
         <textarea
           className="form__input"

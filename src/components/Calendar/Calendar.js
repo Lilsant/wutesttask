@@ -5,7 +5,6 @@ import "./Calendar.css";
 export default function Calendar() {
   const [dayNumber, setDayNumber] = useState(0);
   const [week, setWeek] = useState([]);
-  const [isActive, setIsActive] = useState(false);
 
   function onDateClick(currentDay) {
     setDayNumber(currentDay);
@@ -62,7 +61,11 @@ export default function Calendar() {
             <>
               <div
                 key={date.day}
-                className="calendar__item"
+                className={
+                  i === dayNumber
+                    ? "calendar__item calendar__item--active"
+                    : "calendar__item"
+                }
                 onClick={() => {
                   onDateClick(i);
                 }}
