@@ -1,27 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Task from "../Task/Task";
 import TaskForm from "../TaskForm/TaskForm";
 
 export default function TaskSection({ tasks, onTaskArrChange }) {
   const [taskArr, setTaskArr] = useState(tasks);
-
   const [completedTaskArr, setCompletedTaskArr] = useState([]);
+
   function onFormSubmit(taskInfo) {
-    const newArr = [...taskArr, taskInfo];
-    setTaskArr(newArr);
+    taskInfo.id = Math.random()
+      .toString(36)
+      .replace(/[^a-z]+/g, "")
+      .substr(2, 10);
+    const newArr = [...tasks, taskInfo];
+    onTaskArrChange(newArr);
+  }
+
+  function onTaskEdit(taskInformation) {
+    let currentId;
+    tasks.map((el, i) => {
+      if (el.id === taskInformation.id) currentId = i;
+    });
+    const newArr = tasks;
+    newArr[currentId] = taskInformation;
     onTaskArrChange(newArr);
   }
 
   function deleteTask(number) {
     let currentTaskNumber;
-    for (let i = 0; i < taskArr.length; i++) {
-      if (taskArr[i].id === number) currentTaskNumber = i;
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i].id === number) currentTaskNumber = i;
     }
     const newArr = [
-      ...taskArr.slice(0, currentTaskNumber),
-      ...taskArr.slice(currentTaskNumber + 1),
+      ...tasks.slice(0, currentTaskNumber),
+      ...tasks.slice(currentTaskNumber + 1),
     ];
-    setTaskArr(newArr);
     onTaskArrChange(newArr);
   }
 
@@ -34,12 +46,13 @@ export default function TaskSection({ tasks, onTaskArrChange }) {
   }
   return (
     <div>
-      {taskArr.map((task) => {
+      {tasks.map((task) => {
         return (
           <Task
             task={task}
             deleteTask={deleteTask}
             completeTask={completeTask}
+            onTaskEdit={onTaskEdit}
           />
         );
       })}

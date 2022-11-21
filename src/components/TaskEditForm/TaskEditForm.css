@@ -1,0 +1,47 @@
+.task__edit-main {
+  padding-bottom: 16px;
+}
+
+.task__edit {
+  width: 300px;
+  padding: 16px 12px;
+  background-color: #f5f6f7;
+}
+
+.task__edit-input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+}
+
+.task__edit-input--title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 128%;
+  letter-spacing: -0.02em;
+  color: #1b1c1f;
+}
+
+.task__edit-input--titme {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 128%;
+  letter-spacing: -0.02em;
+  color: #656a72;
+  opacity: 0.8;
+  width: 40px;
+}
+
+.task__edit-input--description {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.form__btn--edit {
+  width: 100%;
+}

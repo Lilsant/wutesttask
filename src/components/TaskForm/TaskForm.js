@@ -8,7 +8,6 @@ export default function TaskForm({ onFormSubmit }) {
     time: "",
   });
 
-  console.log(formInfo.title, " ", formInfo.description, formInfo.time);
   return (
     <div className="form__container">
       <form
@@ -33,20 +32,20 @@ export default function TaskForm({ onFormSubmit }) {
           value={formInfo.title}
         />
         <input
-          className="form__input"
-          placeholder="Description"
-          onChange={(e) => {
-            setFormInfo((state) => ({ ...state, description: e.target.value }));
-          }}
-          value={formInfo.description}
-        />
-        <input
           type="time"
           className="form__input"
           placeholder="Time"
           onChange={(e) => {
             setFormInfo((state) => ({ ...state, time: e.target.value }));
           }}
+        />
+        <textarea
+          className="form__input"
+          placeholder="Description"
+          onChange={(e) => {
+            setFormInfo((state) => ({ ...state, description: e.target.value }));
+          }}
+          value={formInfo.description}
         />
         <button type="submit" className="form__btn">
           Add

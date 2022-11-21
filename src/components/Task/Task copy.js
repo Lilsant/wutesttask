@@ -22,14 +22,19 @@ export default function Task({ task, deleteTask, completeTask, onTaskEdit }) {
   }
 
   if (isEdit)
-    return <TaskEditForm onSubmitEditForm={onSubmitEditForm} task={task} />;
+    return (
+      <TaskEditForm
+        onSubmitEditForm={onSubmitEditForm}
+        task={taskInformation}
+      />
+    );
 
   return (
     <div key={task.id} className="task">
       <div className="task__main">
         <div className="task__main-info">
-          <h3 className="task__title">{task.title}</h3>
-          <span className="task__time">{task.time}</span>
+          <h3 className="task__title">{taskInformation.title}</h3>
+          <span className="task__time">{taskInformation.time}</span>
         </div>
         <button
           className="task__button"
@@ -50,7 +55,7 @@ export default function Task({ task, deleteTask, completeTask, onTaskEdit }) {
       </div>
       {isVisible ? (
         <div className="task__more">
-          <p className="task__description">{task.description}</p>
+          <p className="task__description">{taskInformation.description}</p>
           <div className="task__buttons-container">
             <button
               className="task__btn task__btn--edit "
