@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getData, sendData } from "../../firebase/firebase";
 import TaskSection from "../TaskSection/TaskSection";
 import "./Calendar.css";
 
@@ -48,6 +49,14 @@ export default function Calendar() {
 
   useEffect(() => {
     createWeekArray();
+    const data = getData();
+    data.then((res) => {
+      if (res === null) sendData(week);
+      return;
+    });
+    data.then((res) => {
+      console.dir(res);
+    });
   }, []);
 
   if (!week) {
