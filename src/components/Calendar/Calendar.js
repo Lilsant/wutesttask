@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { getData, sendData } from "../../firebase/firebase";
+import { db, getData, sendData } from "../../firebase/firebase";
 import TaskSection from "../TaskSection/TaskSection";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+
 import "./Calendar.css";
 
 export default function Calendar() {
   const [dayNumber, setDayNumber] = useState(0);
   const [week, setWeek] = useState([]);
 
+  async function getDataNow() {
+    const querySnapshot = await getDocs(collection(db, "todos"));
+    if (querySnapshot.size == 0) return null;
+    querySnapshot.forEach((doc) => console.log(doc.data()));
+  }
+
   function onDateClick(currentDay) {
     setDayNumber(currentDay);
-    console.log(week);
   }
 
   function onTaskArrChange(arr) {
@@ -20,6 +27,14 @@ export default function Calendar() {
       newElement,
       ...week.slice(dayNumber + 1),
     ];
+    newArr.map((el) => {
+      el.tasks.sort((a, b) => {
+        return (
+          parseFloat(a.time.replace(":", "")) -
+          parseFloat(b.time.replace(":", ""))
+        );
+      });
+    });
     setWeek(newArr);
   }
 
@@ -54,9 +69,7 @@ export default function Calendar() {
       if (res === null) sendData(week);
       return;
     });
-    data.then((res) => {
-      console.dir(res);
-    });
+    getDataNow();
   }, []);
 
   if (!week) {
